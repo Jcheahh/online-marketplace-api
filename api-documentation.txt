@@ -4,37 +4,38 @@ GET "/products"
 return all products in the list
 
 GET "/product/:id"
-get specific product from the product list 
+return a specific product with the given id from the product list 
 
 POST "/product"
-create a new product into the list
+create a new product and add into the list
 
 PUT "/product/:id"
-edit the product with the param id from the list
+edit the product with the given id from the list
 
 DELETE "/product/:id"
-delete the product with the param id from the list
+delete the product with the given id from the list
 
 Cart Item CRUD Api
 
 The purpose of the cart item is to grab one product from product list into one specific cart from 
 the cart list. I assuming that there will be multiple carts and products. One cart can contain 
-zero or more products and one product can belongs to zero or more carts.
+zero or more products and oane product belongs to zero or more carts. Because I don't have a user 
+system so I created a cart and use it as a default cart.
 
 GET "/cart_item"
-return all cart item that are in the list
+return all cart items that are in the list
 
 GET "/cart_item/cart/:id"
-get cart item with the specific cart id from the cart item list 
+return a cart item with the given cart id from the cart item list 
 
 POST "/cart_item"
-add a product that are exist in the product list into the cart
+add a product that exists in the product list into the cart
 
 PUT "/cart_item/:id/product"
-edit the product's quantity with the param id from the cart
+edit the product's quantity with the given id in the cart
 
 DELETE "/cart_item/product/:id"
-delete the product with the param id from the cart
+delete the product with the given id from the cart
 
 GET "/cart_item/checkout/cart/:id"
-return total price of all products from the cart
+return total price of all products in the cart
