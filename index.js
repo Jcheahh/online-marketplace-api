@@ -22,10 +22,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/test", (req, res) => {
-  res.send("Working!!");
-});
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
