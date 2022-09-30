@@ -1,10 +1,6 @@
 let products = [];
 let cart_item = [];
 
-exports.home = (req, res, next) => {
-  res.render("home");
-};
-
 exports.getProducts = (req, res) => {
   res.json(products);
 };
@@ -25,7 +21,6 @@ exports.getProduct = (req, res) => {
 exports.postProduct = (req, res) => {
   const product = req.body;
 
-  console.log(product);
   products.push({ id: Math.floor(Date.now() * Math.random()), product });
 
   res.status(201).send("Product is added to the database");
@@ -39,7 +34,7 @@ exports.putProduct = (req, res) => {
   for (const element of products) {
     if (element.id === id) {
       element.product = newProduct;
-      res.status(204);
+      res.status(204).send("Product is edited");
       return;
     }
   }
@@ -54,7 +49,7 @@ exports.deleteProduct = (req, res) => {
     return i.id !== id;
   });
 
-  res.send("Product is deleted");
+  res.status(204).send("Product is deleted");
 };
 
 // -------------------------------------------------------------------------------------------------------------------
@@ -89,15 +84,13 @@ exports.postCartItem = (req, res) => {
   // To check product must exist in product list
   const foundP = products.some((p) => p.id === product_id);
 
-  console.log(product);
-
   if (foundP) {
     cart_item.push({
       id: Math.floor(Date.now() * Math.random()),
       cart_id: exampleCart,
       product,
     });
-    res.send("Product is added to the cart in database");
+    res.status(201).send("Product is added to the cart in database");
     return;
   }
   res.send("ProductID not exist");
@@ -109,7 +102,7 @@ exports.putCartItem = (req, res) => {
   for (const c of cart_item) {
     if (c.id === id) {
       c.product.quantity = qty;
-      res.send("Product in cart is edited");
+      res.status(204).send("Product in cart is edited");
       return;
     }
   }
@@ -123,7 +116,7 @@ exports.deleteCartItem = (req, res) => {
   cart_item = cart_item.filter((i) => {
     return i.id !== id;
   });
-  res.send("Product in cart is deleted");
+  res.status(204).send("Product in cart is deleted");
 };
 
 exports.checkOut = (req, res) => {
