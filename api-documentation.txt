@@ -1,4 +1,4 @@
-Product Contents CRUD Api
+Product Contents Api
 
 GET "/products"
 return all products in the list
@@ -15,14 +15,14 @@ edit the product with the given id from the list
 DELETE "/product/:id"
 delete the product with the given id from the list
 
-Cart Item CRUD Api
+Cart Item Api
 
 The purpose of the cart item is to grab one product from product list into one specific cart from 
 the cart list. I assuming that there will be multiple carts and products. One cart can contain 
 zero or more products and oane product belongs to zero or more carts. Because I don't have a user 
 system so I created a cart and use it as a default cart.
 
-GET "/cart_item"
+GET "/cart_items"
 return all cart items that are in the list
 
 GET "/cart_item/cart/:id"
