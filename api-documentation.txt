@@ -4,13 +4,25 @@ GET "/products"
 return all products in the list
 
 GET "/product/:id"
-return a specific product with the given id from the product list 
+return a specific product with the given id from the product list
 
 POST "/product"
-create a new product and add into the list
+create a new product and add into the list. Example field: 
+{
+	"name" : "Vaseline",
+    "price": 4.95,
+    "brand": "Vaseline",
+    "product_details": "Moisturizer"
+}
 
 PUT "/product/:id"
-edit the product with the given id from the list
+edit the product with the given id from the list. Example field:
+{
+	"name" : "Gel",
+    "price": 15,
+    "brand": "Bad Lab",
+    "product_details": "Example"
+}
 
 DELETE "/product/:id"
 delete the product with the given id from the list
@@ -29,10 +41,17 @@ GET "/cart_item/cart/:id"
 return a cart item with the given cart id from the cart item list 
 
 POST "/cart_item"
-add a product that exists in the product list into the cart
+add a product that exists in the product list into the cart. Example field:
+{
+	"product_id" : 1170895291358,
+    "quantity": 1
+}
 
 PUT "/cart_item/:id/product"
-edit the product's quantity with the given id in the cart
+edit the product's quantity with the given id in the cart. Example field:
+{
+    "quantity": 3
+}
 
 DELETE "/cart_item/product/:id"
 delete the product with the given id from the cart
