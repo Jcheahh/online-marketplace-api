@@ -19,9 +19,17 @@ exports.getProduct = (req, res) => {
 };
 
 exports.postProduct = (req, res) => {
-  const product = req.body;
+  const { name, price, brand, product_details } = req.body;
 
-  products.push({ id: Math.floor(Date.now() * Math.random()), product });
+  products.push({
+    id: Math.floor(Date.now() * Math.random()),
+    product: {
+      name: name,
+      price: price,
+      brand: brand,
+      product_details: product_details,
+    },
+  });
 
   res.status(201).send("Product is added to the database");
 };
@@ -29,11 +37,16 @@ exports.postProduct = (req, res) => {
 exports.putProduct = (req, res) => {
   const id = parseInt(req.params.id);
 
-  const newProduct = req.body;
+  const { name, price, brand, product_details } = req.body;
 
   for (const element of products) {
     if (element.id === id) {
-      element.product = newProduct;
+      element.product = {
+        name: name,
+        price: price,
+        brand: brand,
+        product_details: product_details,
+      };
       res.status(204).send("Product is edited");
       return;
     }
@@ -78,9 +91,9 @@ exports.getCartItem = (req, res) => {
 };
 
 exports.postCartItem = (req, res) => {
-  const product = req.body;
+  const { product_id, quantity } = req.body;
 
-  const product_id = req.body.product_id;
+  // const product_id = req.body.product_id;
   // To check product must exist in product list
   const foundP = products.some((p) => p.id === product_id);
 
@@ -88,7 +101,7 @@ exports.postCartItem = (req, res) => {
     cart_item.push({
       id: Math.floor(Date.now() * Math.random()),
       cart_id: exampleCart,
-      product,
+      product: { product_id: product_id, quantity: quantity },
     });
     res.status(201).send("Product is added to the cart in database");
     return;
@@ -98,10 +111,10 @@ exports.postCartItem = (req, res) => {
 
 exports.putCartItem = (req, res) => {
   const id = parseInt(req.params.id);
-  const qty = req.body.quantity;
+  const { quantity } = req.body;
   for (const c of cart_item) {
     if (c.id === id) {
-      c.product.quantity = qty;
+      c.product.quantity = quantity;
       res.status(204).send("Product in cart is edited");
       return;
     }
