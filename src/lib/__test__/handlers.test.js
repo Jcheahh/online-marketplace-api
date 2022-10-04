@@ -175,11 +175,3 @@ describe("GET '/cart_item/checkout/cart/:id'", () => {
     }
   });
 });
-
-test("Test description", () => {
-  const t = () => {
-    throw new TypeError("UNKNOWN ERROR");
-  };
-  expect(t).toThrow(TypeError);
-  expect(t).toThrow("UNKNOWN ERROR");
-});

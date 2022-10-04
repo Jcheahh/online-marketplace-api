@@ -93,7 +93,6 @@ exports.getCartItem = (req, res) => {
 exports.postCartItem = (req, res) => {
   const { product_id, quantity } = req.body;
 
-  // const product_id = req.body.product_id;
   // To check product must exist in product list
   const foundP = products.some((p) => p.id === product_id);
 
